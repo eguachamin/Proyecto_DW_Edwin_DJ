@@ -2,6 +2,9 @@
 ## Grupo de Desarrollo Tesis
 ## Sistema de Gestion para Edwin Ashqui DJ
 ![image](https://github.com/user-attachments/assets/c42e7e81-5fbe-4316-97f8-f3a43d7510f7)
+### Despliegue
+## 🔗 Links despliegue
+[![Vercel](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://proyecto-dw-edwin-dj.vercel.app/)
 ## Autores
 - Jonathan Ramirez
 - Ariel Ashqui
