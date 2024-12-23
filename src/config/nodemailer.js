@@ -49,9 +49,29 @@ const sendMailToRecoveryPassword = async(userMail,token)=>{
     });
     console.log("Mensaje enviado satisfactoriamente: ", info.messageId);
 }
-
+const sendMailToUsuario = async(userMail,password,nombre,token)=>{
+    let info = await transporter.sendMail({
+    from: 'admin@vet.com',
+    to: userMail,
+    subject: "Correo de bienvenida",
+    html: `
+    <h1>EDWIN ASHQUI DJ (🎛️🎶🎛️)</h1>
+    <h2>Hola ${nombre} !!!</h2>
+    <hr>
+    <p>Esta es tu contraseña temporal...No olvides cambiarla por seguridad</p>
+    <p>Contraseña de acceso: ${password}</p>
+    <a href=${process.env.URL_BACKEND}usuario/login${encodeURIComponent(token)}>Clic para iniciar sesión</a>
+    <p>Ser DJ no se trata solo de poner música; se trata de compartir una visión, un mensaje, una forma de conectar con la gente.<h2>y deseo conectar CONTIGO!!!</h2></p>
+    
+    <hr>
+    <footer>Edwin Ashqui DJ te da la Bienvenida!</footer>
+    `
+    });
+    console.log("Mensaje enviado satisfactoriamente: ", info.messageId);
+}
 
 export {
     sendMailToUser,
-    sendMailToRecoveryPassword
+    sendMailToRecoveryPassword,
+    sendMailToUsuario
 } 

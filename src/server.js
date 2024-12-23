@@ -2,7 +2,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import routerVeterinarios from './routers/administrador_routers.js'
+import routerAdministrador from './routers/administrador_routers.js'
+import routerUsuario from './routers/usuario_routers.js'
 
 
 // Inicializaciones
@@ -20,12 +21,15 @@ app.use(express.json())
 // Variables globales
 
 
-// Rutas 
+// Ruta Servidor
 app.get('/',(req,res)=>{
     res.send("Server okey")
 })
+//Ruta Administrador
+app.use('/api/',routerAdministrador)
 
-app.use('/api/',routerVeterinarios)
+//Ruta Usuario
+app.use('/api/',routerUsuario)
 
 //Rutas no encontradas
 app.use((req,res)=>res.status(404).send("Endpoint no encontrado - 404"))

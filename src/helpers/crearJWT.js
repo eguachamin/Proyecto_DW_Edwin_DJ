@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import Administrador from '../models/administrador.js'
+import Usuario from '../models/usuario.js'
 
 
 const generarJWT = (id,rol)=>{
@@ -20,7 +21,11 @@ const verificarAutenticacion = async (req,res,next)=>{
                 //console.log(req.AdministradorBDD) // con esto se compruba que funcione
                 next()
             }
-            
+            else{
+                req.usuarioBDD = await Usuario.findById(id).lean().select("-password")
+                //console.log(req.usuarioBDD)
+                next()
+            }
         } catch (error) {
             const e = new Error("Formato del token no válido")
             return res.status(404).json({msg:e.message})
