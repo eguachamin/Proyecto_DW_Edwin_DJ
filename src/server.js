@@ -3,7 +3,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import routerAdministrador from './routers/administrador_routers.js'
-import routerUsuario from './routers/usuario_routers.js'
+import routerCliente from './routers/cliente_routers.js'
 
 
 // Inicializaciones
@@ -29,7 +29,7 @@ app.get('/',(req,res)=>{
 app.use('/api/',routerAdministrador)
 
 //Ruta Usuario
-app.use('/api/',routerUsuario)
+app.use('/api/',routerCliente)
 
 //Rutas no encontradas
 app.use((req,res)=>res.status(404).send("Endpoint no encontrado - 404"))

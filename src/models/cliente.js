@@ -1,7 +1,7 @@
 import { mongoose,Schema,model} from 'mongoose'
 import bcrypt from "bcryptjs"
 
-const usuarioSchema = new Schema({
+const clienteSchema = new Schema({
     nombre:{
         type:String,
         require:true,
@@ -51,20 +51,20 @@ const usuarioSchema = new Schema({
 
 
 // Método para cifrar el password del usuario
-usuarioSchema.methods.encrypPassword = async function(password){
+clienteSchema.methods.encrypPassword = async function(password){
     const salt = await bcrypt.genSalt(10)
     const passwordEncryp = await bcrypt.hash(password,salt)
     return passwordEncryp
 }
 
 // Método para verificar si el password ingresado es el mismo de la BDD
-usuarioSchema.methods.matchPassword = async function(password){
+clienteSchema.methods.matchPassword = async function(password){
     const response = await bcrypt.compare(password,this.password)
     return response
 }
-usuarioSchema.methods.crearToken = function(){
+clienteSchema.methods.crearToken = function(){
     const tokenGenerado = this.token = Math.random().toString(36).slice(2) //genera un numero random entre letras y caracteres 
     return tokenGenerado //this.token hace referencia al token definido 
 }
 
-export default model('Usuario',usuarioSchema)
+export default model('Cliente',clienteSchema)

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import Administrador from '../models/administrador.js'
-import Usuario from '../models/usuario.js'
+import Cliente from '../models/cliente.js'
 
 
 const generarJWT = (id,rol)=>{
@@ -22,7 +22,7 @@ const verificarAutenticacion = async (req,res,next)=>{
                 next()
             }
             else{
-                req.usuarioBDD = await Usuario.findById(id).lean().select("-password")
+                req.cliente = await Cliente.findById(id).lean().select("-password")
                 //console.log(req.usuarioBDD)
                 next()
             }
